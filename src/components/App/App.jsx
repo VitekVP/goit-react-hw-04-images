@@ -16,7 +16,7 @@ export const App = () => {
   const [images, setImages] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [totalPage, settoTalPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
   const [modalImg, setModalImg] = useState('');
 
@@ -32,13 +32,13 @@ export const App = () => {
         if (data.totalHits === 0) {
           toast.warn('Sorry, no images found. Please, try again!');
           setImages([]);
-          settoTalPage(0);
+          setTotalPage(0);
           return;
         }
 
         const quantityPage = Math.ceil(data.totalHits / PER_PAGE);
         setImages(data.hits);
-        settoTalPage(quantityPage);
+        setTotalPage(quantityPage);
       })
       .catch(error => setError(error))
       .finally(() => setLoading(false));
@@ -47,8 +47,8 @@ export const App = () => {
   const handleSearch = query => {
     if (query.trim() === '') {
       toast.warn(`Please enter your request!`);
-      setImages([]);
-      settoTalPage(0);
+      // setImages([]);
+      // setTotalPage(0);
       return;
     }
 
