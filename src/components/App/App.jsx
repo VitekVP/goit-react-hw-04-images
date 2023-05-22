@@ -37,7 +37,7 @@ export const App = () => {
         }
 
         const quantityPage = Math.ceil(data.totalHits / PER_PAGE);
-        setImages(data.hits);
+        setImages(images => [...images, ...data.hits]);
         setTotalPage(quantityPage);
       })
       .catch(error => setError(error))
@@ -51,7 +51,7 @@ export const App = () => {
       // setTotalPage(0);
       return;
     }
-
+    setImages([]);
     setQuery(query);
     setPage(1);
     setError(null);
